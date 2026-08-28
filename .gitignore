@@ -1,5 +1,35 @@
+# Environment Variables & Secrets
+.env
+.env.*
+*.env
+*.key
+*.pem
+secrets.json
+credentials.json
+api_keys.json
+
+# SQLite Databases & Local Storage
 *.db
 *.sqlite
+*.sqlite3
+memory.db
+
+# Python bytecode & cache
 __pycache__/
+*.py[cod]
+*$py.class
 .pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
 .venv/
+venv/
+ENV/
+env/
+
+# IDE & OS Artifacts
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
