@@ -1,5 +1,21 @@
+"""
+Memory Module — State Machine (Pure Function)
+
+Implements MEM-AD-2.0 §4: Transition table for ApplicationStatus.
+
+Pure, deterministic function: same event sequence in → identical derived state out.
+This is the core invariant tested by Evaluation Gate G5.
+
+No LLM calls, no side effects, no I/O. (Law 2)
+"""
+
 from typing import Optional
 from .models import ApplicationStatus, EventType, MemoryEvent
+
+
+# ---------------------------------------------------------------------------
+# Terminal / Classification Intent Sets
+# ---------------------------------------------------------------------------
 
 SOFT_TERMINAL_STATUSES = {
     ApplicationStatus.REJECTED,
@@ -10,20 +26,25 @@ SOFT_TERMINAL_STATUSES = {
 INTERVIEW_INTENTS = {"interview_invite", "scheduling_link"}
 OFFER_INTENTS = {"offer_extended"}
 REJECTION_INTENTS = {"soft_rejection", "hard_rejection"}
+AMBIGUOUS_INTENTS = {"ambiguous", "unclear", "needs_clarification"}
+
 
 def apply_event(
     current_status: Optional[ApplicationStatus],
-    event: MemoryEvent
+    event: MemoryEvent,
 ) -> ApplicationStatus:
     """
-    Pure state-machine function computing the new ApplicationStatus 
+    Pure state-machine function computing the new ApplicationStatus
     given the current status and an incoming MemoryEvent.
+
+    Transition table from MEM-AD-2.0 §4.
     """
-    # 1. UNKNOWN event type -> no-op on status (or UNKNOWN if initial event)
+
+    # 1. UNKNOWN event type → no-op on status (or UNKNOWN if initial event)
     if event.event_type == EventType.UNKNOWN:
         return current_status if current_status is not None else ApplicationStatus.UNKNOWN
 
-    # 2. MANUAL_NOTE with explicit status override
+    # 2. MANUAL_NOTE with explicit status override — escape hatch for human correction
     if event.event_type == EventType.MANUAL_NOTE:
         override = event.payload.get("status_override") or event.payload.get("new_status")
         if override:
@@ -63,7 +84,20 @@ def apply_event(
         if intent in REJECTION_INTENTS or macro == "negative":
             return ApplicationStatus.REJECTED
 
-        # Ambiguous / info request / under review / etc.
+        if intent in AMBIGUOUS_INTENTS:
+            return ApplicationStatus.AMBIGUOUS_OUTCOME
+
+        # Info request / under review / etc. → RESPONSE_RECEIVED
         return ApplicationStatus.RESPONSE_RECEIVED
+
+    # 5. New event types: INTERVIEW_SCHEDULED (from MCP Chief of Staff)
+    if event.event_type == EventType.INTERVIEW_SCHEDULED:
+        return ApplicationStatus.INTERVIEW_SCHEDULED
+
+    # 6. Informational event types — state passthrough (no transition)
+    #    DOSSIER_COMPILED, SKILL_GAP_EVALUATED do not change application status;
+    #    they enrich the event trail only.
+    if event.event_type in (EventType.DOSSIER_COMPILED, EventType.SKILL_GAP_EVALUATED):
+        return current_status if current_status is not None else ApplicationStatus.UNKNOWN
 
     return current_status if current_status is not None else ApplicationStatus.UNKNOWN

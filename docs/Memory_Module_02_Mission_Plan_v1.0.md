@@ -17,7 +17,7 @@ Memory Module guarantees that every lifecycle event—from initial job discovery
 
 ### The Three Inviolable Tenets
 
-1. **Absolute Completeness (No Silent Drops):** Every event emitted by an upstream sub-agent (The Harvester, AlignResume, Overture, PDF Auto-Apply, Sentiment Classifier, MCP Chief of Staff) is captured with its full raw payload preserved, even when malformed or unrecognized (`UNKNOWN` bucket).
+1. **Absolute Completeness (No Silent Drops):** Every event emitted by an upstream sub-agent (The Gleaner, AlignResume, Overture, PDF Auto-Apply, Sentiment Classifier, MCP Chief of Staff) is captured with its full raw payload preserved, even when malformed or unrecognized (`UNKNOWN` bucket).
 2. **Mathematical Replay Parity (Event Sourcing):** Derived application state is 100% deterministic and rebuildable from the raw event stream. Replaying 10,000 events via `rebuild_derived_state()` produces identical state with zero byte drift.
 3. **Subsystem Independence & Zero Token Cost:** Memory Module operates as an independent, deterministic FastMCP service. Ingestion, state transitions, deduplication, and SQL queries execute with **zero LLM and zero embedding calls**, ensuring maximum speed, zero cost, and total immunity from model hallucinations.
 

@@ -29,7 +29,7 @@ Four principles govern every decision in this document:
 |   UPSTREAM PRODUCERS                       FASTMCP TOOL MESH                 DOWNSTREAM CONSUMERS     |
 |   ──────────────────                       ──────────────────                 ───────────────────────  |
 |                                                                                                        |
-|   [1] The Harvester          JOB_DISCOVERED ──────────────────────────────►  [0] Conductor DAG         |
+|   [1] The Gleaner          JOB_DISCOVERED ──────────────────────────────►  [0] Conductor DAG         |
 |   [2] AlignResume            RESUME_TAILORED ─────► ┌──────────────────┐ ──► (State & Cooldowns)       |
 |   [3] Overture Outreach      OUTREACH_SENT ──────► │  record_event()   │                              |
 |   [4] Research Agent         DOSSIER_COMPILED ───► │  get_application()│     [CLI Harness]             |
@@ -287,7 +287,7 @@ class MemoryStore:
 
 | Producer | Event Type | Key Payload Fields | Reconciliation Status |
 |---|---|---|---|
-| **The Harvester [1]** | `JOB_DISCOVERED` | `job_id`, `company`, `role_title`, `domain`, `source_url`, `jd_hash` | Proposed — reconcile against Harvester spec before Phase 2 |
+| **The Gleaner [1]** | `JOB_DISCOVERED` | `job_id`, `company`, `role_title`, `domain`, `source_url`, `jd_hash` | Proposed — reconcile against Gleaner spec before Phase 2 |
 | **AlignResume [2]** | `RESUME_TAILORED` | `tailoring_run_id`, `resume_diff_summary`, `bullets_added`, `bullets_removed` | Proposed — maps from `TailoringRun` model |
 | **Overture Outreach [3]** | `OUTREACH_SENT` | `recipient_email`, `channel`, `subject`, `overture_run_id` | Proposed — maps from Overture SQLite run history |
 | **Research Agent [4]** | `DOSSIER_COMPILED` | `dossier_id`, `company`, `tech_stack`, `financial_health_score` | Proposed — maps from Research Agent output schema |

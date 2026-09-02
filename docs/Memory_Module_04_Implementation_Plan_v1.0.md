@@ -219,4 +219,4 @@ Phase 0 (Setup)
                                             └── Phase 7 (Full Test Suite + v2.0 Ship)
 ```
 
-No Memory Module phase blocks The Harvester's or PDF Auto-Apply Agent's own implementation — their integration adapters are written against proposed contracts now and corrected later without restructuring Memory Module, by design (ADR-2's extensibility NFR).
+No Memory Module phase blocks The Gleaner's or PDF Auto-Apply Agent's own implementation — their integration adapters are written against proposed contracts now and corrected later without restructuring Memory Module, by design (ADR-2's extensibility NFR).

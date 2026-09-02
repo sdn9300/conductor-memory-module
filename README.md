@@ -18,7 +18,7 @@ DATA LAYER
  [10] Candidate Profile JSON ─────────────────────────┐
                                                       │ (read by opaque ID)
 DISCOVERY                                            │
- [1]  The Harvester ──────► JOB_DISCOVERED            │
+ [1]  The Gleaner ──────► JOB_DISCOVERED            │
                                                       │
 APPLICATION                                           │
  [2]  AlignResume ────────► RESUME_TAILORED           │
@@ -140,7 +140,7 @@ from src.adapters import from_harvester_event, from_classified_signal
 # Initialize store
 store = MemoryStore("memory.db")
 
-# Ingest event from Harvester
+# Ingest event from Gleaner
 event = from_harvester_event({
     "job_id": "job_google_001",
     "application_id": "app_001",

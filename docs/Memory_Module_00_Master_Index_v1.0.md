@@ -38,7 +38,7 @@ This index maps the six formal specifications so developers, AI sub-agents, and 
 |  [10] Candidate Profile JSON Engine (Master Truth Anchor) ─────────────────────────┐             |
 |                                                                                    │              |
 |  DISCOVERY & INTELLIGENCE                                                          │              |
-|   [1] The Harvester ──────► Emits: JOB_DISCOVERED                                  │              |
+|   [1] The Gleaner ──────► Emits: JOB_DISCOVERED                                  │              |
 |   [4] Research Agent ─────► Emits: DOSSIER_COMPILED                                │              |
 |   [5] Future-Fit ─────────► Emits: SKILL_GAP_EVALUATED                             │              |
 |                                                                                    │              |
@@ -77,7 +77,7 @@ This index maps the six formal specifications so developers, AI sub-agents, and 
 | Subsystem # | Component Name | Relationship to Memory Module | Event / Protocol Contract | Status |
 |---|---|---|---|---|
 | **[10]** | **Candidate Profile JSON** | Master Identity Anchor | Foreign Key `candidate_id` reference; opaque lookup | Spec Complete |
-| **[1]** | **The Harvester** | Upstream Producer | `JOB_DISCOVERED` (Job schema, source URL, company ID) | Spec Complete |
+| **[1]** | **The Gleaner** | Upstream Producer | `JOB_DISCOVERED` (Job schema, source URL, company ID) | Spec Complete |
 | **[2]** | **AlignResume** | Upstream Producer | `RESUME_TAILORED` (`TailoringRun` payload, diff summary) | Deployed v1.0 |
 | **[3]** | **Overture Outreach** | Upstream Producer | `OUTREACH_SENT` (Recipient recruiter, channel, subject) | Built v1.0 |
 | **[4]** | **Research Agent** | Upstream Producer | `DOSSIER_COMPILED` (Financial health, tech stack dossier) | Spec Complete |

@@ -22,7 +22,7 @@ DATA LAYER
       (Static candidate identity ground truth)        │ (opaque ID link)
                                                       │
 DISCOVERY                                            │
- [1]  The Harvester ──────► JOB_DISCOVERED            │
+ [1]  The Gleaner ──────► JOB_DISCOVERED            │
                                                       │
 APPLICATION                                           │
  [2]  AlignResume ────────► RESUME_TAILORED           │
@@ -228,7 +228,7 @@ class MemoryStore:
 Adapters convert upstream component dictionaries and Pydantic models into standardized, validated `MemoryEvent` objects with deterministic SHA-256 `event_id` hashes for deduplication:
 
 1. **`from_harvester_event(data: Dict[str, Any]) -> MemoryEvent`**
-   * **Source:** The Harvester (#1)
+   * **Source:** The Gleaner (#1)
    * **Event Type:** `EventType.JOB_DISCOVERED`
    * **Payload Keys:** `job_id`, `company`, `role_title`, `url`, `location`, `salary_estimate`
 2. **`from_align_resume_event(data: Dict[str, Any]) -> MemoryEvent`**

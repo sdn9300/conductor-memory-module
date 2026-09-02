@@ -16,7 +16,7 @@ The **Unified AI-Native Career Operating System (CareerOS)** is a 10-subsystem a
 | Subsystem # | Component Name | Architectural Role | Current Status |
 |---|---|---|---|
 | **[10]** | **Candidate Profile JSON** | Master Identity & Truth Anchor | Spec Complete |
-| **[1]** | **The Harvester (Gleaner)** | Multi-Source Job Discovery & Ingestion | Spec Complete |
+| **[1]** | **The Gleaner (Gleaner)** | Multi-Source Job Discovery & Ingestion | Spec Complete |
 | **[2]** | **AlignResume** | Truthfulness-Guarded Resume Tailoring | Deployed v1.0 |
 | **[3]** | **Overture Outreach** | Recruiter Outreach & Follow-up | Built v1.0 |
 | **[4]** | **Research Agent** | Pre-Application Company Intelligence | Spec Complete |
@@ -39,7 +39,7 @@ Without a dedicated, immutable, event-sourced memory subsystem, the multi-agent 
 +---------------------------------------------------------------------------------------------------+
 |                                  THE DISTRIBUTED AMNESIA PROBLEM                                  |
 |                                                                                                   |
-|  [The Harvester] ──► Discovers Job X                                                              |
+|  [The Gleaner] ──► Discovers Job X                                                              |
 |  [AlignResume]   ──► Generates Tailored Resume for Job X                                          |
 |  [Overture]      ──► Sends Outreach for Job X                                                     |
 |  [PDF Auto-Apply]──► Submits Application on Greenhouse ATS for Job X                              |
@@ -105,7 +105,7 @@ To maintain rigorous scope discipline and guarantee sub-millisecond execution, t
 | Stakeholder / Agent | Positive Impact with Memory Module | Risk if Memory Module is Absent |
 |---|---|---|
 | **Conductor Master DAG [0]** | Queries instantaneous ground-truth state via FastMCP to route next actions deterministically. | Operates blind; forced to scrape disparate logs or parse emails ad hoc. |
-| **The Harvester [1]** | Checks `check_domain_cooldown()` before queueing discovered jobs, eliminating duplicates. | Queues duplicate jobs, wasting tailoring tokens and candidate time. |
+| **The Gleaner [1]** | Checks `check_domain_cooldown()` before queueing discovered jobs, eliminating duplicates. | Queues duplicate jobs, wasting tailoring tokens and candidate time. |
 | **PDF Auto-Apply [7]** | Logs submission receipts and verifies prior application state before launching browser. | Violates ATS rate limits and submits duplicate applications. |
 | **Sentiment Classifier [9]** | Writes classified recruiter sentiment directly to the ledger with full raw payload audit. | High-value classified signals are discarded upon generation. |
 | **Soumyadeep Nath (Candidate)** | Instant CLI query for interview prep: exact timeline, recruiter replies, and tailored resume diffs. | Manually cross-references inboxes and spreadsheets with risk of error. |

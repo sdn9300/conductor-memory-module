@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: memory-module
+Version: 2.0.0
+Summary: CareerOS Unified Memory Module — Event-Sourced State Layer (Subsystem #8)
+Requires-Python: >=3.11
+Requires-Dist: pydantic>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Provides-Extra: mcp
+Requires-Dist: fastmcp>=0.1.0; extra == "mcp"

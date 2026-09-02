@@ -1,0 +1,27 @@
+[project]
+name = "memory-module"
+version = "2.0.0"
+description = "CareerOS Unified Memory Module — Event-Sourced State Layer (Subsystem #8)"
+requires-python = ">=3.11"
+dependencies = [
+    "pydantic>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+]
+mcp = [
+    "fastmcp>=0.1.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["src*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
